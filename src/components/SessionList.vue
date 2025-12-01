@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="session-list">
     <SessionCard
       v-for="session in sessions"
       :key="session.id"
       :session="session"
-      @delete-session="$emit('delete-session', session.id)"
+      @delete-session="$emit('delete-session', $event)"
     />
   </div>
 </template>
@@ -13,7 +13,15 @@
 import SessionCard from "./SessionCard.vue";
 
 export default {
-  props: ["sessions"],
-  components: { SessionCard }
+  name: "SessionList",
+  components: { SessionCard },
+  props: ["sessions"]
 };
 </script>
+
+<style scoped>
+.session-list {
+  display: grid;
+  gap: 20px;
+}
+</style>

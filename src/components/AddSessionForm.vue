@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form class="add-form" @submit.prevent="handleSubmit">
     <input v-model="name" placeholder="Class Name" />
     <input v-model="coach" placeholder="Coach Name" />
     <input type="date" v-model="date" />
@@ -21,12 +21,9 @@ export default {
       capacity: ""
     };
   },
-
   methods: {
     handleSubmit() {
-      if (!this.name || !this.coach || !this.date || !this.time || !this.capacity) {
-        return;
-      }
+      if (!this.name || !this.coach || !this.date || !this.time || !this.capacity) return;
 
       const newSession = {
         id: Date.now(),
@@ -48,3 +45,34 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.add-form input {
+  flex: 1 1 150px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.add-form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #ff6347;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-form button:hover {
+  background: #ff4b2b;
+}
+</style>
